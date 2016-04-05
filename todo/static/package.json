@@ -1,0 +1,35 @@
+{
+  "name": "Todo",
+  "version": "1.0.0",
+  "author": "Hemant Jadon",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts":{
+	  "typings":"typings",
+      "gulp":"gulp"
+  },
+  
+  "dependencies": {
+    "angular2": "2.0.0-beta.13",
+    "systemjs": "0.19.25",
+    "es6-shim": "^0.35.0",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.2",
+    "zone.js": "0.6.6"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.0.5",
+    "gulp-minify": "0.0.7",
+    "gulp-rename": "^1.2.2",
+    "gulp-typescript": "^2.12.1",
+    "gulp-watch": "^4.3.5",
+    "less-plugin-autoprefix": "^1.5.1",
+    "less-plugin-clean-css": "^1.5.1",
+    "typescript": "^1.8.9",
+    "typings": "^0.7.11"
+  }
+}
