@@ -20,6 +20,7 @@ from .views import APIRoot,HomePage
 urlpatterns = [
     url(r'^$', HomePage , name = 'home'),
     url(r'^api/$',APIRoot.as_view(),name='api'),
+    url(r'^api/authentication/',include('user.urls')),
     url(r'^api/todo/',include('todo_app.urls')),
     url(r'^api/users/',include('user.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),

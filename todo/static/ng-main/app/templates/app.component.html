@@ -1,0 +1,4 @@
+<div [ngSwitch]="isAuthenticated">
+	<span *ngSwitchWhen="true">{{title}}</span>
+	<span *ngSwitchWhen="false">Login</span>
+</div>
