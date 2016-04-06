@@ -10,8 +10,9 @@ from user.permissions import IsAnonymous,IsSelf
 # Create your views here.
 
 class UserList(generics.ListAPIView):
-    queryset = AuthUser.objects.all()
-    serializer_class = UserSerializer
+	permission_classes = ([permissions.IsAuthenticated])
+	queryset = AuthUser.objects.all()
+	serializer_class = UserSerializer
 
 class UserCreate(generics.CreateAPIView):
 	permission_classes = ([IsAnonymous])
@@ -19,7 +20,7 @@ class UserCreate(generics.CreateAPIView):
 	serializer_class = UserSerializer
 	
 class UserRetrieve(generics.RetrieveAPIView):
-	permission_classes = ([permissions.IsAuthenticated])
+	permission_classes = ([IsSelf])
 	queryset = AuthUser.objects.all()
 	serializer_class = UserSerializer
 	
