@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', './auth.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', './auth.service', './login.component', './todo-dashboard.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/http', './auth.service'], function(e
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, auth_service_1;
+    var core_1, http_1, auth_service_1, login_component_1, todo_dashboard_component_1;
     var AppComponent;
     return {
         setters:[
@@ -22,6 +22,12 @@ System.register(['angular2/core', 'angular2/http', './auth.service'], function(e
             },
             function (auth_service_1_1) {
                 auth_service_1 = auth_service_1_1;
+            },
+            function (login_component_1_1) {
+                login_component_1 = login_component_1_1;
+            },
+            function (todo_dashboard_component_1_1) {
+                todo_dashboard_component_1 = todo_dashboard_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -32,7 +38,7 @@ System.register(['angular2/core', 'angular2/http', './auth.service'], function(e
                 }
                 AppComponent.prototype._checkAuth = function () {
                     var _this = this;
-                    this._authService.checkAuthentication()
+                    return this._authService.checkAuthentication()
                         .subscribe(function (data) { return ([_this.isAuthenticated = data.status, _this.user = data.fields]); }, function (error) { return _this._AuthErrorMessage = error; });
                 };
                 AppComponent.prototype.ngOnInit = function () {
@@ -42,6 +48,10 @@ System.register(['angular2/core', 'angular2/http', './auth.service'], function(e
                     core_1.Component({
                         selector: 'ng-app',
                         templateUrl: '/static/ng-main/app/templates/app.component.html',
+                        directives: [
+                            todo_dashboard_component_1.TodoDashboardComponent,
+                            login_component_1.LoginComponent
+                        ],
                         providers: [
                             auth_service_1.AuthService,
                             http_1.HTTP_PROVIDERS

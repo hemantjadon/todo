@@ -1,10 +1,16 @@
 import { Component,OnInit } from 'angular2/core';
 import { HTTP_PROVIDERS } from 'angular2/http';
 import { AuthService } from './auth.service';
+import { LoginComponent } from './login.component';
+import { TodoDashboardComponent } from './todo-dashboard.component';
 
 @Component({
 	selector: 'ng-app',
 	templateUrl: '/static/ng-main/app/templates/app.component.html',
+	directives: [
+		TodoDashboardComponent,
+		LoginComponent
+	],
 	providers: [
 		AuthService,
 		HTTP_PROVIDERS
@@ -25,7 +31,7 @@ export class AppComponent implements OnInit{
 	private _AuthErrorMessage: string;
 	
 	private _checkAuth(){
-		this._authService.checkAuthentication()
+		return this._authService.checkAuthentication()
 			.subscribe(
 				data => ([this.isAuthenticated = data.status,this.user = data.fields]),
 				error => this._AuthErrorMessage = <any>error
