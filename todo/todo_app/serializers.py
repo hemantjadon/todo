@@ -37,7 +37,7 @@ class TodoListElementSerializer(serializers.HyperlinkedModelSerializer):
 	
 	class Meta:
 		model = TodoListElement
-		fields = ('url','id','timestamp','todo','title')
+		fields = ('url','id','timestamp','todo','is_checked','title')
 
 class TodoSerializer(serializers.HyperlinkedModelSerializer):
 	url = serializers.HyperlinkedIdentityField(view_name='todo-detail',lookup_field='pk')

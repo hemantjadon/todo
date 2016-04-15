@@ -9,4 +9,3 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = AuthUser
 		fields = ('url','id','username','email','is_staff','todos')
-		

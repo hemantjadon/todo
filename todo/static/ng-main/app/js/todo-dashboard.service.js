@@ -11,7 +11,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, http_1, Observable_1;
-    var TodoDashboardService;
+    var TodoDashboardService, TodoUpdateService;
     return {
         setters:[
             function (core_1_1) {
@@ -46,6 +46,52 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                 return TodoDashboardService;
             }());
             exports_1("TodoDashboardService", TodoDashboardService);
+            TodoUpdateService = (function () {
+                function TodoUpdateService(http) {
+                    this.http = http;
+                }
+                TodoUpdateService.prototype.getCookie = function (name) {
+                    var cookieValue = null;
+                    if (document.cookie && document.cookie != '') {
+                        var cookies = document.cookie.split(';');
+                        for (var i = 0; i < cookies.length; i++) {
+                            var cookie = jQuery.trim(cookies[i]);
+                            // Does this cookie string begin with the name we want?
+                            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                break;
+                            }
+                        }
+                    }
+                    return cookieValue;
+                };
+                TodoUpdateService.prototype._updateTitle = function (todo) {
+                    var csrftoken = this.getCookie('csrftoken');
+                    var url = window.location.origin + "/api/todo/" + todo.id + "/update/?format=json";
+                    var put_obj = JSON.stringify({ title: todo.title });
+                    var headers = new http_1.Headers({
+                        'X-CSRFToken': csrftoken,
+                        'Content-Type': 'application/json'
+                    });
+                    return this.http.put(url, put_obj, { headers: headers })
+                        .map(function (response) { return response.json(); })
+                        .catch(this._handleError);
+                };
+                TodoUpdateService.prototype.updateTodo = function (todo, event) {
+                    this._updateTitle(todo).subscribe();
+                    console.log(event);
+                };
+                TodoUpdateService.prototype._handleError = function (error) {
+                    console.error(error);
+                    return Observable_1.Observable.throw(error.json().error || 'Server error');
+                };
+                TodoUpdateService = __decorate([
+                    core_1.Injectable(), 
+                    __metadata('design:paramtypes', [http_1.Http])
+                ], TodoUpdateService);
+                return TodoUpdateService;
+            }());
+            exports_1("TodoUpdateService", TodoUpdateService);
         }
     }
 });

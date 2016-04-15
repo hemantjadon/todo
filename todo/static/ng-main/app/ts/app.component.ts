@@ -3,17 +3,19 @@ import { HTTP_PROVIDERS } from 'angular2/http';
 import { AuthService } from './auth.service';
 import { LoginComponent } from './login.component';
 import { TodoDashboardComponent } from './todo-dashboard.component';
+import { NavbarComponent } from './navbar.component';
 
 @Component({
 	selector: 'ng-app',
 	templateUrl: '/static/ng-main/app/templates/app.component.html',
 	directives: [
 		TodoDashboardComponent,
-		LoginComponent
+		LoginComponent,
+		NavbarComponent,
 	],
 	providers: [
 		AuthService,
-		HTTP_PROVIDERS
+		HTTP_PROVIDERS,
 	]
 })
 

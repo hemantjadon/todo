@@ -8,7 +8,7 @@ class Todo(models.Model):
 	id = models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
 	owner = models.ForeignKey(AuthUser,related_name='todos')
 	timestamp = models.DateTimeField(auto_now_add=True)
-	title = models.CharField(max_length=100,null=True,blank=False)
+	title = models.CharField(max_length=100,null=True,blank=True)
 	
 	class Meta:
 		ordering = ['-timestamp']
@@ -21,7 +21,7 @@ class TodoListElement(models.Model):
 	todo = models.ForeignKey(Todo,related_name='list')
 	timestamp = models.DateTimeField(auto_now_add=True)
 	title = models.CharField(max_length=100,null=True,blank=False)
-	
+	is_checked = models.BooleanField(default=False) 
 	class Meta:
 		ordering = ['timestamp']
 	

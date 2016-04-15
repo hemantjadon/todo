@@ -1,2 +1,46 @@
-<span>Dash Board</span>
-{{todos}}
+<style>
+	.card{
+		padding: 0px;
+		box-shadow:0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);
+	}
+	.card-content{
+		padding: 0px;
+	}
+	.card-title{
+		padding: 3px 15px 3px 15px;
+		display: block;
+	}
+	span[contenteditable="true"]:focus{
+		outline: none;
+	}
+	span[contenteditable="true"]{
+		font-weight: 500;
+		cursor: text;
+	}
+	span[placeholder]:focus{
+		display: inline-block;
+	}
+	span[placeholder]:empty:before {
+		content: attr(placeholder);
+		color:rgb(150,150,150); 
+	}
+</style>
+
+<div class="outerbox container">
+	<div class="row">
+		<div class="col s8 offset-s2" *ngFor="#todo of todos" >
+		  <div class="card grey lighten-5" (click)="_onSelect(todo,$event)">
+			<div class="card-content">
+				<span contenteditable="true" placeholder="Title" class="card-title" [textContent]="todo.title" (input)="todo.title = $event.target.textContent" (blur) = "_onFocusOut(todo,$event)"></span>
+				<div class="list">
+					<ul>
+						<li *ngFor="#listElement of todo.list" >
+							<todo-list-element [listElement]=listElement></todo-list-element>
+						</li>
+					</ul>
+				</div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+</div>

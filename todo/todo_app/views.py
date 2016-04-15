@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from todo_app.serializers import TodoSerializer,TodoListElementSerializer
 from todo_app.models import Todo,TodoListElement
+from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework import generics
 from rest_framework import permissions
@@ -33,10 +34,10 @@ class TodoDetail(generics.RetrieveAPIView):
 		return Todo.objects.filter(owner=self.request.user)
 
 class TodoUpdate(generics.UpdateAPIView):
-	serializer_class = TodoSerializer
-	permission_classes = ([IsSelf])
-	def get_queryset(self):
-		return Todo.objects.filter(owner=self.request.user)
+    serializer_class = TodoSerializer
+    permission_classes = ([IsSelf])
+    def get_queryset(self):
+        return Todo.objects.filter(owner=self.request.user)
 	
 class TodoDelete(generics.DestroyAPIView):
 	queryset = Todo.objects.all()

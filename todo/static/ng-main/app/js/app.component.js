@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', './auth.service', './login.component', './todo-dashboard.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', './auth.service', './login.component', './todo-dashboard.component', './navbar.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/http', './auth.service', './login.co
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, auth_service_1, login_component_1, todo_dashboard_component_1;
+    var core_1, http_1, auth_service_1, login_component_1, todo_dashboard_component_1, navbar_component_1;
     var AppComponent;
     return {
         setters:[
@@ -28,6 +28,9 @@ System.register(['angular2/core', 'angular2/http', './auth.service', './login.co
             },
             function (todo_dashboard_component_1_1) {
                 todo_dashboard_component_1 = todo_dashboard_component_1_1;
+            },
+            function (navbar_component_1_1) {
+                navbar_component_1 = navbar_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -50,11 +53,12 @@ System.register(['angular2/core', 'angular2/http', './auth.service', './login.co
                         templateUrl: '/static/ng-main/app/templates/app.component.html',
                         directives: [
                             todo_dashboard_component_1.TodoDashboardComponent,
-                            login_component_1.LoginComponent
+                            login_component_1.LoginComponent,
+                            navbar_component_1.NavbarComponent,
                         ],
                         providers: [
                             auth_service_1.AuthService,
-                            http_1.HTTP_PROVIDERS
+                            http_1.HTTP_PROVIDERS,
                         ]
                     }), 
                     __metadata('design:paramtypes', [auth_service_1.AuthService])
